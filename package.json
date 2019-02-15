@@ -3,18 +3,17 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
+    "postinstall": "node ./android-release-gradle-fix.js",
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "android": "react-native run-android",
-    "android:prod": "react-native bundle --platform android --dev false --entry-file index.js --bundle-output ./android/app/src/main/assets/index.android.bundle --assets-dest ./android/app/src/main/res/ && cd android && ENVFILE=.env.production ./gradlew assembleRelease",
-    "android:uat": "ENVFILE=.env.uat react-native run-android",
-    "android:build": "react-native bundle --platform android --dev false --entry-file index.js --bundle-output ./android/app/src/main/assets/index.android.bundle --assets-dest ./android/app/src/main/res/ && cd android && ./gradlew assembleDebug",
-    "android:uat:build": "react-native bundle --platform android --dev false --entry-file index.js --bundle-output ./android/app/src/main/assets/index.android.bundle --assets-dest ./android/app/src/main/res/ && cd android && ENVFILE=.env.uat ./gradlew assembleRelease",
+    "android:build": "react-native bundle --platform android --dev false --entry-file index.js --bundle-output ./android/app/src/main/assets/index.android.bundle --assets-dest ./android/app/src/main/res/ && cd android && ./gradlew assembleRelease",
     "test": "jest"
   },
   "dependencies": {
     "react": "16.6.3",
     "react-native": "0.58.4",
     "react-native-gesture-handler": "^1.0.15",
+    "react-native-material-textfield": "^0.12.0",
     "react-native-vector-icons": "^6.3.0",
     "react-navigation": "^3.2.3",
     "react-redux": "^6.0.0",

@@ -10,9 +10,6 @@ const RepoNavigator = createMaterialTopTabNavigator(RepoRoutes, {
       backgroundColor: '#24292d',
     },
     tabStyle: {
-      justifyContent: 'flex-start',
-      alignItems: 'flex-start',
-      flex: '0 1 auto',
       backgroundColor: '#24292d',
     }
   }

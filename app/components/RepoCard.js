@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/Octicons';
 
 const styles = StyleSheet.create({
@@ -20,6 +20,11 @@ const styles = StyleSheet.create({
     flex: 1,
     fontSize: 18,
     color: '#0063d9',
+    flexDirection: 'row',
+    flexWrap: 'wrap'
+  },
+  repoName: {
+    fontWeight: 'bold'
   },
   descriptionWrapper: {
     paddingLeft: 30,
@@ -45,28 +50,35 @@ const styles = StyleSheet.create({
   }
 });
 
-const RepoCard = ({ data: { description, full_name, language, stargazers_count, fork } }) => (
-  <View style={styles.container}>
-    <View style={styles.titleWrapper}>
-      <View style={styles.repoTypeIcon}>
-        <Icon name={fork ? 'repo-forked' : 'repo'} size={20} />
-      </View>
-      <Text style={styles.title}>{full_name}</Text>
-    </View>
-    <View style={styles.descriptionWrapper}>
-      {description ? <Text>{description}</Text> : null }
-      <View style={styles.subDetailWrapper}>
-        <View style={styles.subDetail}>
-          <Icon name='star' size={20} style={styles.detailIcon}/>
-          <Text>{stargazers_count}</Text>
+const RepoCard = ({ data: { description, full_name, language, stargazers_count, fork, name } }) => {
+  const [ username ] = full_name.split(name);
+  console.log('username, repoName: ', username);
+  return (
+    <TouchableOpacity style={styles.container}>
+      <View style={styles.titleWrapper}>
+        <View style={styles.repoTypeIcon}>
+          <Icon name={fork ? 'repo-forked' : 'repo'} size={20} />
         </View>
-        <View style={styles.subDetail}>
-          <View style={styles.languageIcon}></View>
-          <Text>{language}</Text>
+        <Text style={styles.title}>
+          <Text>{username}</Text>
+          <Text style={styles.repoName}>{name}</Text>
+        </Text>
+      </View>
+      <View style={styles.descriptionWrapper}>
+        {description ? <Text>{description}</Text> : null}
+        <View style={styles.subDetailWrapper}>
+          <View style={styles.subDetail}>
+            <Icon name='star' size={20} style={styles.detailIcon} />
+            <Text>{stargazers_count}</Text>
+          </View>
+          <View style={styles.subDetail}>
+            <View style={styles.languageIcon}></View>
+            <Text>{language}</Text>
+          </View>
         </View>
       </View>
-    </View>
-  </View>
-);
+    </TouchableOpacity>
+  );
+}
 
 export default RepoCard;
